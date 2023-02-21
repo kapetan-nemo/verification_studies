@@ -14,6 +14,8 @@ module top;
 
 	// import the YAPP package
 	import yapp_pkg::*;
+	`include "router_tb.sv"
+	`include "router_test_lib.sv"
 
 	yapp_packet packet; 
 	yapp_packet packet_clone; 
