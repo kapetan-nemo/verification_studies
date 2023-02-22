@@ -14,6 +14,8 @@ module top;
 
 	// import the YAPP package
 	import yapp_pkg::*;
+
+	// the order of includes is very important
 	`include "router_tb.sv"
 	`include "router_test_lib.sv"
 
@@ -26,10 +28,10 @@ module top;
 	initial begin
 	// generate 5 random packets and use the print method
 	// to display the results
-		for (int i = 0; i < 5; i++) begin
+/* 		for (int i = 0; i < 5; i++) begin
 			packet = new($sformatf("packet_%0d", i)); 
 			$display("created packet #%d\n", i);
-			packet.randomize(); 
+			// packet.randomize(); 
 			packet.print(uvm_default_table_printer); 
 			packet.print(uvm_default_tree_printer); 
 			packet.print(uvm_default_line_printer); 
@@ -52,7 +54,8 @@ module top;
 	$display("bad COMPARE packet \n");
 	packet_clone.length = '0; 
 	packet_clone.compare(packet_copy); 
-	
+	 */
+	run_test(); 
 	end
 
 endmodule : top
