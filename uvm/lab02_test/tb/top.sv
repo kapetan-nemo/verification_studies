@@ -19,25 +19,8 @@ module top;
 	`include "router_tb.sv"
 	`include "router_test_lib.sv"
 
-	yapp_packet packet; 
-	yapp_packet packet_clone; 
-	yapp_packet packet_copy; 
-
-
-
 	initial begin
-	// generate 5 random packets and use the print method
-	// to display the results
- 		for (int i = 0; i < 5; i++) begin
-			packet = new($sformatf("packet_%0d", i)); 
-			$display("created packet #%d\n", i);
-			packet.length.rand_mode(0); 
-			packet.length = 42; 
-			packet.randomize(); 
-			packet.print(uvm_default_table_printer); 
-		end	
-
-	run_test(); 
+		run_test(); 
 	end
 
 endmodule : top
