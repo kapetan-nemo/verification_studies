@@ -78,7 +78,7 @@ class yapp_5_packets extends yapp_base_seq;
 
   // Sequence body definition
   virtual task body();
-    `uvm_info(get_type_name(), "Executing yapp_5_packets sequence", UVM_LOW)
+    `uvm_info(get_type_name(), "Executing yapp_5_packets sequence", UVM_HIGH)
      repeat(5)
       `uvm_do(req)
   endtask
