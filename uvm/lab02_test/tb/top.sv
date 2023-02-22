@@ -28,33 +28,15 @@ module top;
 	initial begin
 	// generate 5 random packets and use the print method
 	// to display the results
-/* 		for (int i = 0; i < 5; i++) begin
+ 		for (int i = 0; i < 5; i++) begin
 			packet = new($sformatf("packet_%0d", i)); 
 			$display("created packet #%d\n", i);
-			// packet.randomize(); 
+			packet.length.rand_mode(0); 
+			packet.length = 42; 
+			packet.randomize(); 
 			packet.print(uvm_default_table_printer); 
-			packet.print(uvm_default_tree_printer); 
-			packet.print(uvm_default_line_printer); 
 		end	
 
-	// experiment with the copy, clone and compare UVM method
-	$display("COPY packet \n");
-	packet_copy = new("packet_copy");
-
-	packet_copy.copy(packet); 
-	packet_copy.print(); 
-
-	$display("CLONE packet \n");
-	$cast(packet_clone, packet.clone()); 
-	packet_clone.print();
-
-	$display("good COMPARE packet \n");
-	packet_clone.compare(packet_copy); 
-
-	$display("bad COMPARE packet \n");
-	packet_clone.length = '0; 
-	packet_clone.compare(packet_copy); 
-	 */
 	run_test(); 
 	end
 
