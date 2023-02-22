@@ -27,13 +27,13 @@ function void base_test::build_phase(uvm_phase phase);
     /*  note: Do not call super.build_phase() from any class that is extended from an UVM base class!  */
     /*  For more information see UVM Cookbook v1800.2 p.503  */
     super.build_phase(phase);
-
-    uvm_config_wrapper::set(this, "my_tb.yapp.tx_agent.sequencer.run_phase",
+    
+    uvm_config_wrapper::set(this,   "my_tb.yapp.tx_agent.sequencer.run_phase",
                                     "default_sequence",
                                     yapp_5_packets::type_id::get());
-
+                                    
     tb = new("my_tb", this); 
-
+    
     `uvm_info("REPORT", "build phase in test base test has been executed", UVM_HIGH)
 endfunction: build_phase
 
