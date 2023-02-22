@@ -10,6 +10,8 @@ Copyright Cadence Design Systems (c)2015
 -64
 
  -uvmhome $UVMHOME
++UVM_TESTNAME=base_test
++UVM_VERBOSITY=UVM_HIGH
 
 // include directories
 //*** add incdir include directories here
