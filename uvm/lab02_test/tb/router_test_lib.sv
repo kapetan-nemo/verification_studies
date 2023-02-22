@@ -44,3 +44,28 @@ function void base_test::end_of_elaboration_phase(uvm_phase phase);
     uvm_top.print_topology(); 
     `uvm_info("REPORT", "end_of_elaboration_phase in test base test has been executed", UVM_HIGH)
 endfunction: end_of_elaboration_phase
+
+
+//  Class: test2
+//
+class test2 extends base_test;
+    `uvm_component_utils(test2);
+
+    //  Constructor: new
+    function new(string name = "test2", uvm_component parent);
+        super.new(name, parent);
+    endfunction: new
+
+    extern function void build_phase(uvm_phase phase);
+
+endclass: test2
+
+
+/*----------------------------------------------------------------------------*/
+/*  UVM Build Phases                                                          */
+/*----------------------------------------------------------------------------*/
+function void test2::build_phase(uvm_phase phase);
+    super.build_phase(phase);
+    `uvm_info("UVM_MSG", "test2 build_phase executed", UVM_HIGH)
+    
+endfunction: build_phase
