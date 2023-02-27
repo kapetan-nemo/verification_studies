@@ -13,7 +13,7 @@ Copyright Cadence Design Systems (c)2015
 +UVM_TESTNAME=base_test
 +UVM_VERBOSITY=UVM_HIGH
 
-+SVSEED=random
+//+SVSEED=$(SEED)
 // include directories
 //*** add incdir include directories here
 -incdir ../sv
