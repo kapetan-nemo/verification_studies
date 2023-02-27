@@ -16,6 +16,12 @@ class yapp_tx_agent extends uvm_agent;
     extern function void build_phase(uvm_phase phase);
     extern function void connect_phase(uvm_phase phase);
     
+    function void start_of_simulation_phase(uvm_phase phase);
+        super.start_of_simulation_phase(phase);
+        `uvm_info(get_type_name(), {"Start of simulation phase from ", get_full_name()}, UVM_HIGH)
+    endfunction: start_of_simulation_phase
+
+
 endclass: yapp_tx_agent
 
 
