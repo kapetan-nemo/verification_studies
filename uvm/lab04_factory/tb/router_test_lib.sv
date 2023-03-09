@@ -32,9 +32,6 @@ function void base_test::build_phase(uvm_phase phase);
     /*  For more information see UVM Cookbook v1800.2 p.503  */
     super.build_phase(phase);
     
-    uvm_config_wrapper::set(this,   "my_tb.yapp.tx_agent.sequencer.run_phase",
-                                    "default_sequence", 
-                                    yapp_5_packets::type_id::get());
                           
     uvm_config_int::set(this, "*", "recording_detail", 1); 
     // tb = new("my_tb", this);
@@ -79,3 +76,43 @@ function void test2::build_phase(uvm_phase phase);
     `uvm_info("UVM_MSG", "test2 build_phase executed", UVM_HIGH)
     
 endfunction: build_phase
+
+
+
+
+//  Class: short_packet_test
+//
+class short_packet_test extends base_test;
+    `uvm_component_utils(short_packet_test);
+
+
+    //  Constructor: new
+    function new(string name = "short_packet_test", uvm_component parent);
+        super.new(name, parent);
+    endfunction: new
+
+    /*---  UVM Build Phases            ---*/
+    /*------------------------------------*/
+    //  Function: build_phase
+    extern function void build_phase(uvm_phase phase);
+    
+endclass: short_packet_test
+
+
+/*----------------------------------------------------------------------------*/
+/*  UVM Build Phases                                                          */
+/*----------------------------------------------------------------------------*/
+function void short_packet_test::build_phase(uvm_phase phase);
+    /*  note: Do not call super.build_phase() from any class that is extended from an UVM base class!  */
+    /*  For more information see UVM Cookbook v1800.2 p.503  */
+    super.build_phase(phase);
+
+    yapp_packet::type_id::set_type_override(short_yapp_packet::get_type());
+    
+    uvm_config_wrapper::set(this,   "my_tb.yapp.tx_agent.sequencer.run_phase",
+                                    "default_sequence", 
+                                    yapp_5_packets::type_id::get());
+
+
+endfunction: build_phase
+
