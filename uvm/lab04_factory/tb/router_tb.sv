@@ -14,7 +14,9 @@ class router_tb extends uvm_env;
         /*  note: Do not call super.build_phase() from any class that is extended from an UVM base class!  */
         /*  For more information see UVM Cookbook v1800.2 p.503  */
         super.build_phase(phase);
-        yapp = new("yapp", this);
+        // yapp = new("yapp", this);
+        yapp = yapp_tx_env::type_id::create(.name("yapp"), .parent(this));
+        
         `uvm_info("REPORT", "build phase in testbench router_tb has been executed", UVM_HIGH)
         
     endfunction: build_phase  

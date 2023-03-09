@@ -32,10 +32,13 @@ function void yapp_tx_agent::build_phase(uvm_phase phase);
     /*  note: Do not call super.build_phase() from any class that is extended from an UVM base class!  */
     /*  For more information see UVM Cookbook v1800.2 p.503  */
     super.build_phase(phase);
-    monitor   = new("monitor",   this); 
+    // monitor   = new("monitor",   this); 
+    monitor   = yapp_tx_monitor::type_id::create(.name("monitor"), .parent(this));
     if (is_active == UVM_ACTIVE) begin
-        driver    = new("driver",    this); 
-        sequencer = new("sequencer", this);
+        // driver    = new("driver",    this); 
+        // sequencer = new("sequencer", this);
+        driver    = yapp_tx_driver   ::type_id::create(.name("driver"),    .parent(this));
+        sequencer = yapp_tx_sequencer::type_id::create(.name("sequencer"), .parent(this));
     end 
 endfunction: build_phase
 

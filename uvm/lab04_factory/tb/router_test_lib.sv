@@ -17,6 +17,10 @@ class base_test extends uvm_test;
     //  Function: end_of_elaboration_phase
     extern function void end_of_elaboration_phase(uvm_phase phase);
 
+    //  Function: check_phase
+    extern function void check_phase(uvm_phase phase);
+    
+
 endclass: base_test
 
 
@@ -31,8 +35,11 @@ function void base_test::build_phase(uvm_phase phase);
     uvm_config_wrapper::set(this,   "my_tb.yapp.tx_agent.sequencer.run_phase",
                                     "default_sequence", 
                                     yapp_5_packets::type_id::get());
-                                    
-    tb = new("my_tb", this); 
+                          
+    uvm_config_int::set(this, "*", "recording_detail", 1); 
+    // tb = new("my_tb", this);
+    tb = router_tb::type_id::create(.name("my_tb"), .parent(this));
+     
     
     `uvm_info("REPORT", "build phase in test base test has been executed", UVM_HIGH)
 endfunction: build_phase
@@ -41,6 +48,12 @@ function void base_test::end_of_elaboration_phase(uvm_phase phase);
     uvm_top.print_topology(); 
     `uvm_info("REPORT", "end_of_elaboration_phase in test base test has been executed", UVM_HIGH)
 endfunction: end_of_elaboration_phase
+
+function void base_test::check_phase(uvm_phase phase);
+    super.check_phase(phase);
+    check_config_usage(); 
+endfunction: check_phase
+
 
 
 //  Class: test2

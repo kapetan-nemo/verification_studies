@@ -12,7 +12,9 @@ class yapp_tx_env extends uvm_env;
         /*  note: Do not call super.build_phase() from any class that is extended from an UVM base class!  */
         /*  For more information see UVM Cookbook v1800.2 p.503  */
         super.build_phase(phase);
-        tx_agent = new("tx_agent", this); 
+        // tx_agent = new("tx_agent", this); 
+        tx_agent = yapp_tx_agent::type_id::create(.name("tx_agent"), .parent(this));
+        
     endfunction: build_phase
         
     function void end_of_elaboration_phase(uvm_phase phase);
