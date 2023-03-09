@@ -10,7 +10,7 @@ Copyright Cadence Design Systems (c)2015
 -64
 
  -uvmhome $UVMHOME
-+UVM_TESTNAME=base_test
++UVM_TESTNAME=short_packet_test
 +UVM_VERBOSITY=UVM_HIGH
 
 //+SVSEED=$(SEED)
