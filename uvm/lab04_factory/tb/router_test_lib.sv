@@ -105,9 +105,9 @@ endclass: short_packet_test
 function void short_packet_test::build_phase(uvm_phase phase);
     /*  note: Do not call super.build_phase() from any class that is extended from an UVM base class!  */
     /*  For more information see UVM Cookbook v1800.2 p.503  */
-    super.build_phase(phase);
-
+    
     yapp_packet::type_id::set_type_override(short_yapp_packet::get_type());
+    super.build_phase(phase);
     
     uvm_config_wrapper::set(this,   "my_tb.yapp.tx_agent.sequencer.run_phase",
                                     "default_sequence", 
@@ -116,3 +116,30 @@ function void short_packet_test::build_phase(uvm_phase phase);
 
 endfunction: build_phase
 
+
+class set_config_test extends base_test;
+    `uvm_component_utils(set_config_test);
+
+    function new(string name = "set_config_test", uvm_component parent);
+        super.new(name, parent);
+    endfunction: new
+
+    extern function void build_phase(uvm_phase phase);
+    extern function void check_phase(uvm_phase phase);
+    
+endclass: set_config_test
+
+
+/*----------------------------------------------------------------------------*/
+/*  UVM Build Phases                                                          */
+/*----------------------------------------------------------------------------*/
+function void set_config_test::build_phase(uvm_phase phase);
+    uvm_config_int::set(this, "my_tb.yapp.tx_agent", "is_active", UVM_PASSIVE);
+    super.build_phase(phase); 
+    
+
+endfunction: build_phase
+
+function void set_config_test::check_phase(uvm_phase phase);
+    check_config_usage();
+endfunction
