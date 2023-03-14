@@ -10,8 +10,8 @@ Copyright Cadence Design Systems (c)2015
 -64
 
  -uvmhome $UVMHOME
-+UVM_TESTNAME=short_packet_test
-+UVM_VERBOSITY=UVM_HIGH
++UVM_TESTNAME=set_config_test
++UVM_VERBOSITY=UVM_LOW
 
 //+SVSEED=$(SEED)
 // include directories
